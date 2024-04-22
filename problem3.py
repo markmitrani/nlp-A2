@@ -30,18 +30,20 @@ counts = np.zeros((len(word_index_dict), len(word_index_dict)))  # DONE: initial
 # DONE: iterate through file and update counts
 for sentence in f:
     previous_word = '<s>'
-    for current_word in sentence.lower().split()[1:]:  # [1:] to skip '<s>'
+    for current_word in sentence.rstrip().lower().split()[1:]:  # [1:] to skip '<s>'
         current_word_index = word_index_dict[current_word]
         previous_word_index = word_index_dict[previous_word]
-        # counts[previous_word_index][current_word_index] += 1
-        counts[current_word_index][previous_word_index] += 1
+        counts[previous_word_index][current_word_index] += 1
         previous_word = current_word
 
 # DONE: normalize counts
 probs = normalize(counts, norm='l1', axis=1)
-# print(GENERATE(word_index_dict, probs, "bigram", 20,"<s>"))
-# TODO: writeout bigram probabilities
-print(probs[word_index_dict["the"]][word_index_dict["all"]])
-print(probs[word_index_dict["jury"]][word_index_dict["the"]])
+
+# DONE: writeout bigram probabilities
+with open("bigram_probs.txt", "w") as file:
+    file.write(f'{probs[word_index_dict["all"]][word_index_dict["the"]]}\n')
+    file.write(f'{probs[word_index_dict["the"]][word_index_dict["jury"]]}\n')
+    file.write(f'{probs[word_index_dict["the"]][word_index_dict["campaign"]]}\n')
+    file.write(f'{probs[word_index_dict["anonymous"]][word_index_dict["calls"]]}\n')
 
 f.close()
