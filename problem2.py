@@ -22,10 +22,10 @@ for i, line in enumerate(vocab):
 print(word_index_dict)
 f = open("brown_100.txt")
 
-# TODO: initialize counts to a zero vector
+# DONE: initialize counts to a zero vector
 counts = np.zeros(len(word_index_dict))
 
-# TODO: iterate through file and update counts
+# DONE: iterate through file and update counts
 for i, line in enumerate(f):
     words = line.rstrip().split()
     words_lower = [x.lower() for x in words]
@@ -34,7 +34,7 @@ for i, line in enumerate(f):
 
 f.close()
 
-# TODO: normalize and writeout counts.
+# DONE: normalize and writeout counts.
 print("Counts before normalization:")
 print(counts)
 
