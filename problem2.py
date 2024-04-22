@@ -11,10 +11,9 @@ DO NOT SHARE/DISTRIBUTE SOLUTIONS WITHOUT THE INSTRUCTOR'S PERMISSION
 import numpy as np
 from generate import GENERATE
 
-
 vocab = open("brown_vocab_100.txt")
 
-#load the indices dictionary
+# load the indices dictionary
 word_index_dict = {}
 for i, line in enumerate(vocab):
     word = line.rstrip()
@@ -23,10 +22,10 @@ for i, line in enumerate(vocab):
 print(word_index_dict)
 f = open("brown_100.txt")
 
-#TODO: initialize counts to a zero vector
+# TODO: initialize counts to a zero vector
 counts = np.zeros(len(word_index_dict))
 
-#TODO: iterate through file and update counts
+# TODO: iterate through file and update counts
 for i, line in enumerate(f):
     words = line.rstrip().split()
     words_lower = [x.lower() for x in words]
@@ -35,7 +34,7 @@ for i, line in enumerate(f):
 
 f.close()
 
-#TODO: normalize and writeout counts.
+# TODO: normalize and writeout counts.
 print("Counts before normalization:")
 print(counts)
 
