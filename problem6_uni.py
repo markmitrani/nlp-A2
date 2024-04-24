@@ -28,7 +28,8 @@ f.close()
 probs = counts / np.sum(counts)
 # PROBLEM 2 END
 
-# PROBLEM 6 START
+# PROBLEM 6 for unigram
+
 unigram = probs
 toy_sentences = codecs.open("toy_corpus.txt")
 result_txt = open("unigram_eval.txt","w")
