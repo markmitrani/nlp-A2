@@ -35,12 +35,12 @@ probs = normalize(counts, norm='l1', axis=1)
 # PROBLEM 6 for smooth:
 smooth_bi = probs
 toy_sentences = codecs.open("toy_corpus.txt")
-result_txt = open("smoothed_eval.txt","w")
+result_txt = open("smoothed_eval.txt", "w")
 for toy_sentence in toy_sentences:
     print(f"for sentence: {toy_sentence}")
     toy_sentence = toy_sentence.lower().rstrip().split()
     sentprob = 1
-    sent_len = len(toy_sentence)-1 # smooth count
+    sent_len = len(toy_sentence) - 1  # smooth count
     previous_word = '<s>'
     for toy_word in toy_sentence[1:]:
         sentprob *= smooth_bi[word_index_dict[previous_word]][word_index_dict[toy_word]]
