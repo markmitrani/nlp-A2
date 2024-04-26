@@ -51,6 +51,6 @@ for toy_sentence in toy_sentences:
         perplexity = "Probability is 0, perplexity can't be computed."
     print(f"we get prob: {sentprob}")
     print(f"we get perplexity: {perplexity}")
-    result_txt.write(f"{perplexity}")
+    result_txt.write(f"{perplexity}\n")
 
 result_txt.close()

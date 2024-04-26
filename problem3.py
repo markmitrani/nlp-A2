@@ -47,3 +47,6 @@ with open("bigram_probs.txt", "w") as file:
     file.write(f'{probs[word_index_dict["anonymous"]][word_index_dict["calls"]]}\n')
 
 f.close()
+
+[('in', 'the'), ('the', 'past'), ...]
+[('in', 'the', 'past'), ...]

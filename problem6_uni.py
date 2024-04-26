@@ -43,7 +43,7 @@ for toy_sentence in toy_sentences:
     perplexity = 1 / (pow(sentprob, 1.0 / sent_len))
     print(f"we get prob: {sentprob}")
     print(f"we get perplexity: {perplexity}")
-    result_txt.write(f"{perplexity}")
+    result_txt.write(f"{perplexity}\n")
 
 
 result_txt.close()
