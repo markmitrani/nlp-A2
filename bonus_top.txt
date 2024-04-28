@@ -1,0 +1,21 @@
+TOP 20
+('hong', 'kong'): 105562.90909090909
+('viet', 'nam'): 72574.5
+('pathet', 'lao'): 68305.41176470589
+('simms', 'purdew'): 68305.41176470589
+('herald', 'tribune'): 56841.56643356643
+('el', 'paso'): 52781.454545454544
+('lo', 'shu'): 52781.454545454544
+('wtv', 'antigen'): 52104.769230769234
+('puerto', 'rico'): 48383.0
+('drainage', 'ditch'): 44661.230769230766
+('anionic', 'binding'): 40641.72
+('unwed', 'mothers'): 38706.4
+('kohnstamm', 'reactivity'): 37609.45748987854
+('carbon', 'tetrachloride'): 36669.221052631576
+('phonologic', 'subsystems'): 34835.76
+('peaceful', 'coexistence'): 32480.895104895106
+('willie', 'mays'): 32480.895104895106
+('computing', 'allotments'): 31668.872727272726
+('presiding', 'elder'): 30965.12
+('nineteenth-century', 'immigration'): 29029.8

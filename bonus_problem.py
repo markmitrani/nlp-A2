@@ -50,6 +50,7 @@ for word_count in word_counter.items():
 word_counter_stripped = dict(word_counter_stripped)
 
 '''
+# slow af
 def find_word_count(word):
     for word_count in word_counter_stripped:
         if word_count[0] == word:
@@ -89,12 +90,22 @@ print(pointwise_results[0])
 # pointwise_results = np.sort(pointwise_results, order='pmi')
 pointwise_results = sorted(pointwise_results, key=lambda x: x[1], reverse=True)
 
+top_file = open("bonus_top.txt", "w")
 print("TOP 20")
+top_file.write("TOP 20\n")
 for result in pointwise_results[:20]:
     print(f"{result[0]}: {result[1]}")
+    top_file.write(f"{result[0]}: {result[1]}\n")
 
+
+bot_file = open("bonus_bot.txt", "w")
 print("BOTTOM 20")
+bot_file.write("BOTTOM 20\n")
 for result in pointwise_results[-20:]:
     print(f"{result[0]}: {result[1]}")
+    bot_file.write(f"{result[0]}: {result[1]}\n")
 
 print(f"-20: {pointwise_results[-20]}, -1: {pointwise_results[-1]}")
+
+top_file.close()
+bot_file.close()
