@@ -5,8 +5,8 @@ from collections import Counter
 
 ###############################
 # Finding statistics for Brown Corpus
-nltk.download('brown')
-nltk.download('averaged_perceptron_tagger')
+# nltk.download('brown')
+# nltk.download('averaged_perceptron_tagger')
 brown_corpus = brown.words()
 num_tokens = len(brown_corpus)
 num_types = len(set(brown_corpus))

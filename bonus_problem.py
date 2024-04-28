@@ -16,11 +16,13 @@
 
 from nltk.corpus import brown
 import numpy as np
+from tqdm import tqdm
+from collections import Counter
 
 word_counter = {}
 bigrams = []
 corpus_size = 0
-for sentence in brown.sents():
+for sentence in tqdm(brown.sents(), desc="processing brown corpus"):
     sentence = " ".join(sentence)
     sentence = sentence.lower().rstrip().split()
     previous_word = sentence[0]
@@ -42,26 +44,30 @@ for sentence in brown.sents():
 word_counter_stripped = []
 
 for word_count in word_counter.items():
-    if word_count[1] < 10:
+    if word_count[1] >= 10:
         word_counter_stripped.append(word_count)
 
-word_counter_stripped = np.array(word_counter_stripped)
+word_counter_stripped = dict(word_counter_stripped)
 
-
+'''
 def find_word_count(word):
     for word_count in word_counter_stripped:
         if word_count[0] == word:
             return word_count[1]
     return "word not found"
+'''
+
+bigrams_counts = Counter(bigrams)
 
 
 def calc_pointwise(word1, word2):
     if word1 in word_counter_stripped and word2 in word_counter_stripped:
-        bigrams_count = bigrams.count((word1, word2))
+        # bigrams_count = bigrams.count((word1, word2))
+        bigrams_count = bigrams_counts[(word1, word2)]
         if bigrams_count != 0:
-            w1_count = find_word_count(word1)
-            w2_count = find_word_count(word2)
-            if isinstance(w1_count, int) and isinstance(w2_count, int):
+            if word1 in word_counter_stripped.keys() and word2 in word_counter_stripped.keys():
+                w1_count = word_counter_stripped[word1]
+                w2_count = word_counter_stripped[word2]
                 N = corpus_size
                 return (bigrams_count * N) / (w1_count * w2_count)
             else:
@@ -73,18 +79,22 @@ def calc_pointwise(word1, word2):
 
 
 pointwise_results = []
-for bigram in set(bigrams):
+for bigram in tqdm(set(bigrams), desc="processing bigrams"):
     pmi = calc_pointwise(bigram[0], bigram[1])
     if not isinstance(pmi, str):
         pointwise_results.append([bigram, pmi])
 
-pointwise_results = np.array(pointwise_results, dtype=[('name', 'U10'), ('number', int)])
-pointwise_results = np.sort(pointwise_results, order='number')
+print(pointwise_results[0])
+# pointwise_results = np.array(pointwise_results, dtype=[('words', 'U10,U10', (2,)), ('pmi', float)])
+# pointwise_results = np.sort(pointwise_results, order='pmi')
+pointwise_results = sorted(pointwise_results, key=lambda x: x[1], reverse=True)
 
 print("TOP 20")
 for result in pointwise_results[:20]:
     print(f"{result[0]}: {result[1]}")
 
 print("BOTTOM 20")
-for result in pointwise_results[-20:0]:
+for result in pointwise_results[-20:]:
     print(f"{result[0]}: {result[1]}")
+
+print(f"-20: {pointwise_results[-20]}, -1: {pointwise_results[-1]}")
